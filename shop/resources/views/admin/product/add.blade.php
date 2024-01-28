@@ -53,7 +53,11 @@
 
             <div class="form-group">
                 <label>Ảnh Sản Phẩm</label>
-                <input type="file" name="file" class="form-control" id="upload">
+                <input type="file" class="form-control" id="upload">
+                <div id="image_show">
+
+                </div>
+                <input type="hidden" name="file" id="file">
             </div>
 
             <div class="form-group">
