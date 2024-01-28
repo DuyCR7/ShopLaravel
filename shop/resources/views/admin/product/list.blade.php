@@ -6,6 +6,9 @@
         <tr>
             <th style="width: 120px">Mã Sản Phẩm</th>
             <th>Tên Sản Phẩm</th>
+            <th>Ảnh</th>
+            <th>Giá Gốc</th>
+            <th>Giá Sale</th>
             <th>Hoạt Động</th>
             <th>Cập Nhật</th>
             <th style="width: 100px;">
