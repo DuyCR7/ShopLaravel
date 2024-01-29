@@ -51,4 +51,32 @@ class ProductAdminService
         }
         return true;
     }
+
+    public function update($request, $product) : bool
+    {
+        $isValidPrice = $this->isValidPrice($request);
+        if($isValidPrice === false) return false;
+
+        try{
+            $product->fill($request->input());
+            $product->save();
+
+            $request->session()->flash('success', 'Cập Nhật Thành Công');
+        }catch (\Exception $err){
+            $request->session()->flash('error', 'Cập Nhật Không Thành Công!');
+            \Log::info($err->getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public function delete($request)
+    {
+        $product = Product::where('id', $request->input('id'))->first();
+        if($product){
+            $product->delete();
+            return true;
+        }
+        return false;
+    }
 }
