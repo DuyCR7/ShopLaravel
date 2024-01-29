@@ -15,7 +15,7 @@ class MenuService
 
     public function getAll()
     {
-        return Menu::orderbyDesc('id')->paginate(10);
+        return Menu::query()->orderBy('id', 'asc')->paginate(20);
     }
 
     public function create($request)
