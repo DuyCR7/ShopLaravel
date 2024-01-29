@@ -23,7 +23,8 @@ class ProductController extends Controller
     public function index()
     {
         return view('admin.product.list', [
-           'title' => 'Danh Sách Sản Phẩm'
+           'title' => 'Danh Sách Sản Phẩm',
+            'products' => $this->productService->getProduct()
         ]);
     }
 

@@ -12,6 +12,12 @@ class ProductAdminService
         return Menu::where('active', 1)->get();
     }
 
+    public function getProduct()
+    {
+        return Product::with('menu')
+            ->orderbyDesc('id')->paginate(10); //'menu' chính là hàm menu trong Product
+    }
+
     protected function isValidPrice($request)
     {
         if($request->input('price') != 0 && $request->input('price_sale') != 0
