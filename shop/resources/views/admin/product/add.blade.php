@@ -11,7 +11,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Tên Sản Phẩm</label>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Nhập tên sản phẩm ...">
+                        <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="Nhập tên sản phẩm ...">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -30,25 +30,25 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Giá Gốc</label>
-                        <input type="number" name="price" class="form-control" id="price">
+                        <input type="number" name="price" value="{{ old('price') }}" class="form-control" id="price">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Giá Khuyễn Mãi</label>
-                        <input type="number" name="price_sale" class="form-control" id="price_sale">
+                        <input type="number" name="price_sale" value="{{ old('price_sale') }}" class="form-control" id="price_sale">
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label>Mô Tả</label>
-                <textarea name="description" class="form-control"></textarea>
+                <textarea name="description" class="form-control">{{ old('description') }}</textarea>
             </div>
 
             <div class="form-group">
                 <label>Mô Tả Chi Tiết</label>
-                <textarea name="content" id="content" class="form-control"></textarea>
+                <textarea name="content" id="content" class="form-control">{{ old('content') }}</textarea>
             </div>
 
             <div class="form-group">
@@ -57,7 +57,7 @@
                 <div id="image_show">
 
                 </div>
-                <input type="hidden" name="file" id="file">
+                <input type="hidden" name="thumb" id="thumb">
             </div>
 
             <div class="form-group">
