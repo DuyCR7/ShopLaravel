@@ -63,7 +63,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product) // kiểm tra trong database xem có thằng product nào có id này không, tên đặt phải giống biến trong route
     {
         return view('admin.product.edit', [
             'title' => 'Chỉnh Sửa Sản Phẩm',
