@@ -61,7 +61,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-list-alt"></i>
+                        <i class="nav-icon fas fa-store-alt"></i>
                         <p>
                             Sản phẩm
                             <i class="right fas fa-angle-left"></i>
@@ -72,6 +72,23 @@
                             <a href="/admin/products/list" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh Sách Sản Phẩm</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-images"></i>
+                        <p>
+                            Slider
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/admin/sliders/list" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh Sách Slider</p>
                             </a>
                         </li>
                     </ul>
