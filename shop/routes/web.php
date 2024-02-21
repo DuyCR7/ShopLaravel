@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\Users\LoginController;
-use \App\Http\Controllers\Admin\MainController;
+use \App\Http\Controllers\Admin\MainAdminController;
+use \App\Http\Controllers\MainController;
 use \App\Http\Controllers\Admin\MenuController;
 use \App\Http\Controllers\Admin\ProductController;
 use \App\Http\Controllers\Admin\UploadController;
@@ -23,8 +24,8 @@ Route::post('admin/users/login/store', [LoginController::class, 'store']);
 
 Route::middleware(['auth'])->group(function (){
     Route::prefix('admin')->group(function (){
-        Route::get('/', [MainController::class, 'index'])->name('admin');
-        Route::get('main', [MainController::class, 'index']);
+        Route::get('/', [MainAdminController::class, 'index'])->name('admin');
+        Route::get('main', [MainAdminController::class, 'index']);
 
         #Menu
         Route::prefix('menus')->group(function (){
@@ -60,3 +61,5 @@ Route::middleware(['auth'])->group(function (){
         Route::post('upload/services', [UploadController::class, 'store']);
     });
 });
+
+Route::get('/', [MainController::class, 'index']);
