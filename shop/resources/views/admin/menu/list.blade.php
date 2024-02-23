@@ -6,6 +6,7 @@
             <tr>
                 <th style="width: 120px">Mã Danh Mục</th>
                 <th>Tên Danh Mục</th>
+                <th>Ảnh</th>
                 <th>Hoạt Động</th>
                 <th>Cập Nhật</th>
                 <th style="width: 100px;">

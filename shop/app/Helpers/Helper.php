@@ -16,6 +16,7 @@ class Helper
                 <tr>
                     <td>'. $menu->id .'</td>
                     <td>'. $char . $menu->name .'</td>
+                    <td><img src="'. $menu->thumb .'" width="100px"></td>
                     <td>'. self::active($menu->active) .'</td>
                     <td>'. $menu->updated_at .'</td>
                     <td>

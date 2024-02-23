@@ -25,13 +25,15 @@ class CreateFormRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required'
+            'name' => 'required',
+            'thumb' => 'required'
         ];
     }
     public function messages() : array
     {
         return [
-            'name.required' => 'Vui lòng nhập tên danh mục!'
+            'name.required' => 'Vui lòng nhập tên danh mục!',
+            'thumb.required' => 'Ảnh đại diện không được trống!'
         ];
     }
 }

@@ -13,6 +13,14 @@ class MenuService
         return Menu::where('parent_id', 0)->get();
     }
 
+    public function show()
+    {
+        return Menu::query()->select('name', 'id', 'thumb')
+            ->where('parent_id', 0)
+            ->orderByDesc('id')
+            ->get();
+    }
+
     public function getAll()
     {
         return Menu::query()->orderBy('id', 'asc')->paginate(20);
@@ -27,6 +35,7 @@ class MenuService
                 'description' => (string) $request->input('description'),
                 'content' => (string) $request->input('content'),
                 'active' => (int) $request->input('active'),
+                'thumb' => (string) $request->input('thumb'),
                 'slug' => Str::slug($request->input('name'), '-')
             ]);
 
@@ -52,6 +61,7 @@ class MenuService
             $menu->description = (string) $request->input('description');
             $menu->content = (string) $request->input('content');
             $menu->active = (int) $request->input('active');
+            $menu->thumb = (string) $request->input('thumb');
             $menu->slug = Str::slug($request->input('name'), '-');
             $menu->save();
 
