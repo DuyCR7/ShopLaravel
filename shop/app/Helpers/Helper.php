@@ -44,7 +44,7 @@ class Helper
             : '<span class="btn btn-success btn-xs">HOẠT ĐỘNG</span>';
     }
 
-    public static function menus($menus, $parent_id = 0)
+    public static function menus($menus, $parent_id = 0): string
     {
         $html = '';
         foreach ($menus as $key => $menu){
@@ -54,6 +54,8 @@ class Helper
                         <a href="/danh-muc/' . $menu->id  . '-' . Str::slug($menu->name, '-') .'.html">
                             '. $menu->name .'
                         </a>';
+
+                unset($menus[$key]);
 
                 if (self::isChild($menus, $menu->id)){
                     $html .= '<ul class="sub-menu">';
@@ -68,7 +70,7 @@ class Helper
         return $html;
     }
 
-    public static function isChild($menus, $id)
+    public static function isChild($menus, $id): bool
     {
         foreach ($menus as $menu){
             if($menu->parent_id == $id){

@@ -57,4 +57,9 @@ class SliderService
 
         return false;
     }
+
+    public function show()
+    {
+        return Slider::query()->where('active', 1)->orderByDesc('sort_by')->get();
+    }
 }
