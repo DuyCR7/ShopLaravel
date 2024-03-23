@@ -83,4 +83,25 @@ class MenuService
         }
         return false;
     }
+
+    public function getMenuById($id)
+    {
+        return Menu::query()->where('id', $id)
+            ->where('active', 1)
+            ->firstOrFail();
+    }
+
+    public function getProductByMenu($menu, $request)
+    {
+        $query =  $menu->products()
+            ->select('id', 'name', 'price', 'price_sale', 'thumb')
+            ->where('active', 1);
+
+        if($request->input('price')){
+            $query->orderBy('price', $request->input('price'));
+        }
+
+        return $query->paginate(12)
+            ->withQueryString();
+    }
 }
