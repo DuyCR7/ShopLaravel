@@ -45,7 +45,7 @@ class ProductAdminService
 
             $request->session()->flash('success', 'Thêm Sản Phẩm Thành Công');
         }catch (\Exception $err){
-            $request->session()->flash('error', 'Thêm Sản Phẩm Không Thành Công!');
+            $request->session()->flash('error', 'Thêm Sản Phẩm Lỗi!');
             \Log::info($err->getMessage());
             return false;
         }
