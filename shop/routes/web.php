@@ -73,3 +73,4 @@ Route::post('add-cart', [CartController::class, 'index']);
 Route::get('carts', [CartController::class, 'show']);
 Route::post('update-cart', [CartController::class, 'update']);
 Route::get('carts/delete/{id}', [CartController::class, 'remove']);
+Route::post('carts', [CartController::class, 'addCart']);

@@ -15,7 +15,7 @@
         <div class="header-cart-content flex-w js-pscroll">
             @php $total = 0; @endphp
             <ul class="header-cart-wrapitem w-full">
-                @if (count($products) > 0)
+                @if (count($products) > 0 && isset($carts))
                     @foreach($products as $key => $product)
                         @php
                             $price = $product->price_sale != 0 ? $product->price_sale : $product->price;

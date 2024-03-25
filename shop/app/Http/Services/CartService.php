@@ -2,8 +2,11 @@
 
 namespace App\Http\Services;
 
+use App\Models\Cart;
+use App\Models\Customer;
 use App\Models\Product;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 
@@ -78,4 +81,59 @@ class CartService
         return true;
     }
 
+    public function addCart($request)
+    {
+        try
+        {
+            DB::beginTransaction();
+
+            $carts = Session::get('carts');
+            if (is_null($carts))
+            {
+                return false;
+            }
+
+            $customer = Customer::query()->create([
+                'name' => $request->input('name'),
+                'phone' => $request->input('phone'),
+                'address' => $request->input('address'),
+                'content' => $request->input('content')
+            ]);
+
+            $this->infoProductCart($carts, $customer->id);
+
+            DB::commit();
+            $request->session()->flash('success', 'Đặt Hàng Thành Công');
+
+            Session::forget('carts');
+
+        } catch (\Exception $err) {
+            DB::rollBack();
+            $request->session()->flash('error', 'Đặt Hàng Lỗi');
+            return false;
+        }
+        return true;
+    }
+
+    protected function infoProductCart($carts, $customer_id)
+    {
+        $productId = array_keys($carts);
+        $products =  Product::query()->select('id', 'name', 'price', 'price_sale', 'thumb')
+            ->where('active', 1)
+            ->whereIn('id', $productId)
+            ->get();
+
+        $data = [];
+        foreach ($products as  $product)
+        {
+            $data[] = [
+                'customer_id' => $customer_id,
+                'product_id' => $product->id,
+                'qty' => $carts[$product->id],
+                'price' => $product->price_sale != 0 ? $product->price_sale : $product->price
+            ];
+        }
+
+        return Cart::query()->insert($data);
+    }
 }
