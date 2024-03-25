@@ -11,6 +11,7 @@ class ProductService
     public function get($page = null)
     {
         return Product::query()->select('id', 'name', 'price', 'price_sale', 'thumb')
+            ->where('active', 1)
             ->orderByDesc('id')
             ->when($page != null, function ($query) use ($page){
                 $query->offset($page * self::LIMIT);
