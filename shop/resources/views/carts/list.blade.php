@@ -1,9 +1,9 @@
 @extends('main')
 @section('content')
 {{--    <form class="bg0 p-t-130 p-b-85" method="post">--}}
-        @include('admin.alert')
-        @if (count($products) != 0)
         <div class="container bg0 p-t-130 p-b-85">
+            @include('admin.alert')
+            @if (count($products) != 0)
             <div class="row">
                 <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
                     <div class="m-l-25 m-r--38 m-lr-0-xl">
@@ -139,11 +139,11 @@
                     </form>
                 </div>
             </div>
+            @else
+                <div class="container bg0 p-t-130 p-b-85">
+                    <div class="text-center"><h2>Không Có Sản Phẩm Nào Trong Giỏ Hàng</h2></div>
+                </div>
+            @endif
         </div>
-        @else
-            <div class="container bg0 p-t-130 p-b-85">
-                <div class="text-center"><h2>Không Có Sản Phẩm Nào Trong Giỏ Hàng</h2></div>
-            </div>
-        @endif
 {{--    </form>--}}
 @endsection
