@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Slider\SliderService;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+
 
 class SliderController extends Controller
 {
@@ -13,10 +15,26 @@ class SliderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $slider;
+
+    public function __construct(SliderService $slider)
+    {
+        $this->slider = $slider;
+    }
+    public function create()
+    {
+        return view('admin.slider.testApiAdd', [
+            'title' => 'Thêm mới Slider'
+        ]);
+    }
     public function index()
     {
         //
-        return Slider::all();
+        $sliders = Slider::all();
+        return view('admin.slider.testApiList', [
+            'title' => 'Danh Sách Slider Mới Nhất',
+            'sliders' => $sliders
+        ]);
     }
 
     /**
@@ -28,7 +46,8 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         //
-        return Slider::create($request->all());
+        Slider::create($request->input());
+        return redirect('admin.slider.testApiList');
     }
 
     /**
@@ -40,7 +59,10 @@ class SliderController extends Controller
     public function show(Slider $slider)
     {
         //
-        return $slider;
+        return view('admin.slider.testApiEdit', [
+            'title' => 'Cap Nhat',
+            'slider' => $slider
+        ]);
     }
 
     /**
@@ -53,8 +75,18 @@ class SliderController extends Controller
     public function update(Request $request, Slider $slider)
     {
         //
-        $slider->update($request->all());
-        return $slider;
+        $this->validate($request, [
+            'name' => 'required',
+            'thumb' => 'required',
+            'url' => 'required'
+        ]);
+
+        $result = $this->slider->update($request, $slider);
+        if($result) {
+            return redirect('/api/sliders');
+        }
+
+        return redirect()->back();
     }
 
     /**

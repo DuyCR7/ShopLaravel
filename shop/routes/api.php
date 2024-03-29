@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UploadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('sliders', \App\Http\Controllers\api\SliderController::class);
+Route::group(['middleware' => ['web']], function () {
+    //routes here
+    Route::resource('sliders', \App\Http\Controllers\api\SliderController::class);
+});
