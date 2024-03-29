@@ -50,3 +50,4 @@ $('#upload').change(function (){
     });
     // console.log(123);
 });
+// url: '/api/upload/services'

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\Slider\SliderService;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 
 class SliderController extends Controller
@@ -47,7 +48,8 @@ class SliderController extends Controller
     {
         //
         Slider::create($request->input());
-        return redirect('admin.slider.testApiList');
+//        return redirect('/api/sliders');
+        return  Redirect::route('sliders.index')->with('success', 'Thêm Mới Slider Thành Công');
     }
 
     /**
@@ -83,7 +85,7 @@ class SliderController extends Controller
 
         $result = $this->slider->update($request, $slider);
         if($result) {
-            return redirect('/api/sliders');
+            return  Redirect::route('sliders.index')->with('success', 'Cập Nhật Slider Thành Công');
         }
 
         return redirect()->back();
@@ -95,9 +97,17 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Slider $slider)
+    public function destroy(Request $request)
     {
-        //
-        $slider->delete();
+        $result = $this->slider->destroy($request);
+
+        if($result){
+            return response()->json([
+                'error' => false,
+                'message' => 'Xóa Slider Thành Công'
+            ]);
+        }
+
+        return response()->json(['error' => true]);
     }
 }

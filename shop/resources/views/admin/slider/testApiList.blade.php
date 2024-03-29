@@ -36,7 +36,7 @@
                     <a class="btn btn-primary btn-sm" href="{{ route('sliders.show', [$slider->id]) }}">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a class="btn btn-danger btn-sm" href="#" onclick="removeRow({{ $slider->id }}, '/admin/sliders/destroy')">
+                    <a class="btn btn-danger btn-sm" href="#" onclick="removeRow({{ $slider->id }}, '/api/sliders/destroy')">
                         <i class="fas fa-trash"></i>
                     </a>
                 </td>
